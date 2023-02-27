@@ -1,3 +1,5 @@
+package lab01.example.model;
+
 import lab01.example.model.AccountHolder;
 import lab01.example.model.BankAccount;
 import lab01.example.model.SimpleBankAccount;
