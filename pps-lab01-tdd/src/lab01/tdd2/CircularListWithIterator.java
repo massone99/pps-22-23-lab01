@@ -38,5 +38,4 @@ public interface CircularListWithIterator {
      * @return an Iterator which yields previous elements, circularly
      */
     Iterator<Integer> backwardIterator();
-
 }

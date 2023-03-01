@@ -9,7 +9,6 @@ public class CircularListWithIteratorImpl implements CircularListWithIterator {
 
     private final CircularIterator<Integer> circularIterator = new CircularIterator<Integer>(new LinkedList<>());
 
-
     @Override
     public void add(int element) {
         this.circularIterator.add(element);
