@@ -43,8 +43,7 @@ public class CircularListImpl implements CircularList {
     @Override
     public Optional<Integer> previous() {
         decrementIndex();
-        Optional<Integer> value = Optional.of(this.list.get(listIndex));
-        return value;
+        return Optional.of(this.list.get(listIndex));
     }
 
     private void decrementIndex() {

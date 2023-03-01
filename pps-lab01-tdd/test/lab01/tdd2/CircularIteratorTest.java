@@ -3,7 +3,6 @@ package lab01.tdd2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
