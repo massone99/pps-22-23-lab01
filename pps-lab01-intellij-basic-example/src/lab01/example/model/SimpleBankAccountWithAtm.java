@@ -2,48 +2,40 @@ package lab01.example.model;
 
 public class SimpleBankAccountWithAtm implements BankAccount {
     private final int ATM_FEE = 1;
-    private final AccountHolder accountHolder;
-    private double balance = 0;
+    private final SimpleBankAccount bankAccount;
 
     public SimpleBankAccountWithAtm(AccountHolder accountHolder) {
-        this.accountHolder = accountHolder;
+        this.bankAccount = new SimpleBankAccount(accountHolder, 0);
     }
 
     @Override
     public AccountHolder getHolder() {
-        return this.accountHolder;
+        return this.bankAccount.getHolder();
     }
 
     @Override
     public double getBalance() {
-        return this.balance;
+        return this.bankAccount.getBalance();
     }
 
     @Override
     public void deposit(int userID, double amount) {
-        if (isUserIdCorrect(userID)) {
-            this.balance += amount;
-            this.balance -= ATM_FEE;
-        }
+        this.bankAccount.deposit(userID, amount);
+        payAtmFee(userID);
     }
 
     @Override
     public void withdraw(int userID, double amount) {
-        if (isUserIdCorrect(userID)) {
-            if (isWithdrawAllowed(amount)) {
-                this.balance -= amount;
-                this.balance -= ATM_FEE;
-            } else {
-                throw new IllegalStateException();
-            }
+        if (getBalance() >= (amount + ATM_FEE)) {
+            this.bankAccount.withdraw(userID, amount);
+            payAtmFee(userID);
+        } else {
+            throw new IllegalStateException();
         }
     }
 
-    private boolean isWithdrawAllowed(double amount) {
-        return this.balance > amount;
+    private void payAtmFee(int userID) {
+        this.bankAccount.deposit(userID, (ATM_FEE * -1));
     }
 
-    private boolean isUserIdCorrect(int userId) {
-        return this.accountHolder.getId() == userId;
-    }
 }
